@@ -10,20 +10,41 @@
 
 @interface ViewController ()
 
+- (void) setup;
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+  [super viewDidLoad];
+  [self setup];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (ViewController *) init {
+  if (self = [super init]) {
+    [self setup];
+  }
+  return self;
+}
+
+- (void) setup {
+  
+
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  NSLog(@"Preparing for '%@' segue.", segue.identifier);
+
+  // Initialization stuff goes here
+  if ([segue.identifier isEqualToString:@"NewRecordingSegue"]) {
+    
+  } else if ([segue.identifier isEqualToString:@"NewRecordingSegue"]) {
+
+  } else {
+    NSLog(@"Error, attempting to use an undefined segue");
+  }
 }
 
 @end

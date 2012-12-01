@@ -19,6 +19,9 @@
 		497ACA2C166A960A00EFD46F /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497ACA2A166A960A00EFD46F /* MainStoryboard_iPhone.storyboard */; };
 		497ACA2F166A960A00EFD46F /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497ACA2D166A960A00EFD46F /* MainStoryboard_iPad.storyboard */; };
 		497ACA32166A960A00EFD46F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497ACA31166A960A00EFD46F /* ViewController.m */; };
+		49A4D3A8166A9FCE00E1C1AE /* RecordNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A4D3A7166A9FCE00E1C1AE /* RecordNewViewController.m */; };
+		49A4D3AC166AA0AB00E1C1AE /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A4D3AB166AA0AB00E1C1AE /* GalleryViewController.m */; };
+		49A4D3B5166AAAE600E1C1AE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A4D3B4166AAAE600E1C1AE /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,11 @@
 		497ACA2E166A960A00EFD46F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		497ACA30166A960A00EFD46F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		497ACA31166A960A00EFD46F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		49A4D3A6166A9FCE00E1C1AE /* RecordNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordNewViewController.h; sourceTree = "<group>"; };
+		49A4D3A7166A9FCE00E1C1AE /* RecordNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordNewViewController.m; sourceTree = "<group>"; };
+		49A4D3AA166AA0AB00E1C1AE /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		49A4D3AB166AA0AB00E1C1AE /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
+		49A4D3B4166AAAE600E1C1AE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49A4D3B5166AAAE600E1C1AE /* AVFoundation.framework in Frameworks */,
 				497ACA13166A960A00EFD46F /* UIKit.framework in Frameworks */,
 				497ACA15166A960A00EFD46F /* Foundation.framework in Frameworks */,
 				497ACA17166A960A00EFD46F /* CoreGraphics.framework in Frameworks */,
@@ -75,6 +84,7 @@
 		497ACA11166A960A00EFD46F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49A4D3B4166AAAE600E1C1AE /* AVFoundation.framework */,
 				497ACA12166A960A00EFD46F /* UIKit.framework */,
 				497ACA14166A960A00EFD46F /* Foundation.framework */,
 				497ACA16166A960A00EFD46F /* CoreGraphics.framework */,
@@ -92,6 +102,10 @@
 				497ACA30166A960A00EFD46F /* ViewController.h */,
 				497ACA31166A960A00EFD46F /* ViewController.m */,
 				497ACA19166A960A00EFD46F /* Supporting Files */,
+				49A4D3A6166A9FCE00E1C1AE /* RecordNewViewController.h */,
+				49A4D3A7166A9FCE00E1C1AE /* RecordNewViewController.m */,
+				49A4D3AA166AA0AB00E1C1AE /* GalleryViewController.h */,
+				49A4D3AB166AA0AB00E1C1AE /* GalleryViewController.m */,
 			);
 			path = Momento;
 			sourceTree = "<group>";
@@ -180,6 +194,8 @@
 				497ACA1F166A960A00EFD46F /* main.m in Sources */,
 				497ACA23166A960A00EFD46F /* AppDelegate.m in Sources */,
 				497ACA32166A960A00EFD46F /* ViewController.m in Sources */,
+				49A4D3A8166A9FCE00E1C1AE /* RecordNewViewController.m in Sources */,
+				49A4D3AC166AA0AB00E1C1AE /* GalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +322,7 @@
 				497ACA37166A960A00EFD46F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
