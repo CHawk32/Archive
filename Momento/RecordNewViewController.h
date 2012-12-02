@@ -11,7 +11,7 @@
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
 
-@interface RecordNewViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate>
+@interface RecordNewViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *cameraPreview;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
@@ -21,6 +21,7 @@
 @property (nonatomic, strong) AVAssetWriter *assetWriter;
 @property (nonatomic, strong) AVAssetWriterInput *assetWriterInput;
 @property (nonatomic, strong) AVAssetWriterInputPixelBufferAdaptor *pixelBufferAdaptor;
+@property (nonatomic) int frameNumber;
 
 @property (readonly) NSString *defaultFilelocation;
 

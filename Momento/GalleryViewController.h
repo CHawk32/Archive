@@ -10,4 +10,7 @@
 
 @interface GalleryViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIWebView *WebView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @end

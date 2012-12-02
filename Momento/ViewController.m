@@ -40,8 +40,8 @@
   // Initialization stuff goes here
   if ([segue.identifier isEqualToString:@"NewRecordingSegue"]) {
     
-  } else if ([segue.identifier isEqualToString:@"NewRecordingSegue"]) {
-
+  } else if ([segue.identifier isEqualToString:@"ViewGallerySegue"]) {
+    
   } else {
     NSLog(@"Error, attempting to use an undefined segue");
   }

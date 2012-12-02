@@ -50,12 +50,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="cOt-5f-Rb9" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="5hO-ss-lVc"/>
                             <constraint firstItem="ie8-f0-aCZ" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="FUh-WO-ljI"/>
                             <constraint firstItem="ie8-f0-aCZ" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="V6X-nG-CPT"/>
+                            <constraint firstItem="GeO-3q-EVh" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="jUN-gb-a1B"/>
+                            <constraint firstItem="cOt-5f-Rb9" firstAttribute="top" secondItem="ie8-f0-aCZ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="nrk-Qt-azl"/>
                             <constraint firstItem="GeO-3q-EVh" firstAttribute="top" secondItem="cOt-5f-Rb9" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="p1w-1C-RZo"/>
-                            <constraint firstItem="GeO-3q-EVh" firstAttribute="leading" secondItem="cOt-5f-Rb9" secondAttribute="leading" type="default" id="rOM-pG-Lq0"/>
-                            <constraint firstItem="cOt-5f-Rb9" firstAttribute="top" secondItem="3" secondAttribute="top" constant="210" id="xeU-N2-QYi"/>
-                            <constraint firstItem="GeO-3q-EVh" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="zgk-ZB-qtM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="y9L-ez-372"/>
@@ -64,27 +64,34 @@
             </objects>
             <point key="canvasLocation" x="613" y="191"/>
         </scene>
-        <!--View Controller-->
+        <!--Gallery View Controller-->
         <scene sceneID="xCD-Xf-sWo">
             <objects>
-                <viewController id="e1O-KN-6e0" sceneMemberID="viewController">
+                <viewController id="e1O-KN-6e0" customClass="GalleryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="28j-PW-jKh">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="View Online" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1p-Hq-do5">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKb-5V-HDk">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="e0L-ml-kyc"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="a1p-Hq-do5" firstAttribute="top" secondItem="28j-PW-jKh" secondAttribute="top" constant="20" symbolic="YES" type="default" id="hpR-ve-CiS"/>
-                            <constraint firstItem="a1p-Hq-do5" firstAttribute="leading" secondItem="28j-PW-jKh" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="iEf-60-Urj"/>
+                            <constraint firstItem="xKb-5V-HDk" firstAttribute="bottom" secondItem="28j-PW-jKh" secondAttribute="bottom" type="default" id="28i-eg-3Ru"/>
+                            <constraint firstItem="xKb-5V-HDk" firstAttribute="top" secondItem="28j-PW-jKh" secondAttribute="top" type="default" id="WiI-kl-phz"/>
+                            <constraint firstItem="xKb-5V-HDk" firstAttribute="leading" secondItem="28j-PW-jKh" secondAttribute="leading" type="default" id="jfF-4w-TpW"/>
+                            <constraint firstItem="e0L-ml-kyc" firstAttribute="centerY" secondItem="xKb-5V-HDk" secondAttribute="centerY" type="default" id="k2V-50-ZWk"/>
+                            <constraint firstItem="e0L-ml-kyc" firstAttribute="centerX" secondItem="xKb-5V-HDk" secondAttribute="centerX" type="default" id="szz-gI-FW9"/>
+                            <constraint firstItem="xKb-5V-HDk" firstAttribute="trailing" secondItem="28j-PW-jKh" secondAttribute="trailing" type="default" id="xRb-Xv-aDd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1qy-MU-nnf"/>
+                    <connections>
+                        <outlet property="WebView" destination="xKb-5V-HDk" id="0fi-Ba-jZ3"/>
+                        <outlet property="activityIndicator" destination="e0L-ml-kyc" id="dwb-JO-6Kz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="igp-ap-Ph7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -178,6 +185,30 @@
             <point key="canvasLocation" x="87" y="191"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="GalleryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GalleryViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="WebView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RecordNewViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecordNewViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="finishButtonPressed:"/>
+                <relationship kind="action" name="recordButtonPressed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="cameraPreview" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="recordButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

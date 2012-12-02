@@ -60,8 +60,10 @@
                               fileType:AVFileTypeMPEG4
                                  error:&error];
 
-    if (error) {
+    if (!_assetWriter || error) {
       NSLog(@"An error occured creating the asset writer");
+    } else {
+      NSLog(@"Asset writer created successfully");
     }
     [_assetWriter addInput:self.assetWriterInput];
   }
@@ -71,8 +73,8 @@
 - (AVAssetWriterInput *) assetWriterInput {
   if (!_assetWriterInput) {
     NSDictionary *outputSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:640], AVVideoWidthKey,
-                                    [NSNumber numberWithInt:480], AVVideoHeightKey,
+                                    [NSNumber numberWithInt:320], AVVideoWidthKey,
+                                    [NSNumber numberWithInt:240], AVVideoHeightKey,
                                     AVVideoCodecH264, AVVideoCodecKey, nil];
     _assetWriterInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo
                                                            outputSettings:outputSettings];
@@ -93,7 +95,7 @@
   self.isRecording = NO;
   [self.recordButton setTitle:@"Start" forState:UIControlStateNormal];
 
-  if (!self.assetWriter || !self.assetWriterInput || !self.pixelBufferAdaptor) {
+  if (!self.session || !self.assetWriter || !self.assetWriterInput || !self.pixelBufferAdaptor) {
     NSLog(@"Error instatiating avasset writer objects");
   } else {
     NSLog(@"Setup successful");
@@ -103,7 +105,12 @@
 - (IBAction) recordButtonPressed:(UIButton *)sender {
   NSLog(@"Record Button Pressed");
   if (!self.isRecording) {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:self.defaultFilelocation]) {
+      NSLog(@"deleting old file");
+      [[NSFileManager defaultManager]  removeItemAtPath:self.defaultFilelocation error:nil];
+    }
     NSLog(@"Starting asset Writer");
+    self.frameNumber = 0;
     [self.assetWriter startWriting];
     [self.assetWriter startSessionAtSourceTime:kCMTimeZero];
     NSLog(@"Starting capture session");
@@ -136,20 +143,34 @@
   NSData *data = [NSData dataWithContentsOfFile:self.defaultFilelocation];
   NSLog(@"Data length %d", data.length);
   NSLog(@"Have data, will travel");
-  AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL fileURLWithPath:@"momento.wadec.com/upload"]];
-  NSLog(@"Client Made");
-  NSURLRequest *request = [client multipartFormRequestWithMethod:@"POST" path:@"/upload" parameters:nil constructingBodyWithBlock: ^(id <AFMultipartFormData> formData) {
-    [formData appendPartWithFileURL:[NSURL fileURLWithPath:@"defaultRecordedVideoFile.mp4"] name:@"video" error:nil];
+  AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL fileURLWithPath:@"http://momento.wadec.com/upload"]];
+  if (client) {
+    NSLog(@"Client Made");
+  }
+  NSURLRequest *request = [client multipartFormRequestWithMethod:@"POST" path:@"http://momento.wadec.com/upload" parameters:nil constructingBodyWithBlock: ^(id <AFMultipartFormData> formData) {
+    [formData appendPartWithFileURL:[NSURL fileURLWithPath:self.defaultFilelocation] name:@"video" error:nil];
   }];
   NSLog(@"URL Request created");
   
   AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+  /*[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+    NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
+  }];*/
+
+  [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSLog(@"Posted successfully");
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error)  {
+    NSLog(@"Posted failed with error %@", error);
+  }];
+
   [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
     NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
   }];
+
   NSLog(@"Calling operation start");
   [operation start];
   NSLog(@"All done.");
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (AVCaptureSession *)session {
@@ -160,7 +181,7 @@
     // getting data from the camera and microphone
     _session = [[AVCaptureSession alloc] init];
     // Setting the desired quality level to HIGH
-    self.session.sessionPreset = AVCaptureSessionPresetMedium;
+    self.session.sessionPreset = AVCaptureSessionPresetLow;
 
     // Now that the session is done, we set up the device we are using, in this case the default device
     // for video media (ie the camera/microphone)
@@ -194,29 +215,40 @@
     [self.cameraPreview.layer addSublayer:captureVideoPreviewLayer];
 
     // Set up out data output
-    AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
-    [output setVideoSettings:self.videoSettings];
-    
+    AVCaptureVideoDataOutput *outputVideo = [[AVCaptureVideoDataOutput alloc] init];
+    // AVCaptureAudioDataOutput *outputAudio = [[AVCaptureAudioDataOutput alloc] init];
+    [outputVideo setVideoSettings:self.videoSettings];
+
     dispatch_queue_t queue = dispatch_queue_create("myQueue", NULL);
-    [output setSampleBufferDelegate:self queue:queue];
-    [self.session addOutput:output];
+    [outputVideo setSampleBufferDelegate:self queue:queue];
+    // [outputAudio setSampleBufferDelegate:self queue:queue];
+    [self.session addOutput:outputVideo];
+    // [self.session addOutput:outputAudio];
   }
   return _session;
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
-  CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+  CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+  CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+
+  // NSLog(@"PixelBuffer width %ul",CVPixelBufferGetWidth(pixelBuffer));
 
   // a very dense way to keep track of the time at which this frame
   // occurs relative to the output stream, but it's just an example!
-  static int64_t frameNumber = 0;
-  if(self.assetWriterInput.readyForMoreMediaData) {
-    [self.pixelBufferAdaptor appendPixelBuffer:imageBuffer
-                          withPresentationTime:CMTimeMake(frameNumber, 25)];
-    frameNumber++;
+  //NSLog(@"Asset Writer Status: %d", self.assetWriter.status);
+  if (self.assetWriterInput.readyForMoreMediaData) {
+    if ([self.pixelBufferAdaptor appendPixelBuffer:pixelBuffer
+                              withPresentationTime:CMTimeMake(self.frameNumber, 15)]) {
+      //NSLog(@"Frame appended successfully");
+    } else {
+      //NSLog(@"error writing frame %d", self.frameNumber);
+    }
+    self.frameNumber++;
   } else {
     NSLog(@"Skipping frame");
   }
+  CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
 }
 
 @end
