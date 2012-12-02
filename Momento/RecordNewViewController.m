@@ -93,6 +93,7 @@
 
 - (void) setup {
   self.isRecording = NO;
+  self.mainLabel.hidden = YES;
   [self.recordButton setTitle:@"Start" forState:UIControlStateNormal];
 
   if (!self.session || !self.assetWriter || !self.assetWriterInput || !self.pixelBufferAdaptor) {
@@ -134,43 +135,7 @@
 }
 
 - (IBAction)finishButtonPressed:(id)sender {
-  NSLog(@"Welcome to finish button pressed handler!");
-  if ([[NSFileManager defaultManager] fileExistsAtPath:self.defaultFilelocation])
-  {
-    NSLog(@"file exists");
-  }
-  //NSData *data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:self.defaultFilelocation]];
-  NSData *data = [NSData dataWithContentsOfFile:self.defaultFilelocation];
-  NSLog(@"Data length %d", data.length);
-  NSLog(@"Have data, will travel");
-  AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL fileURLWithPath:@"http://momento.wadec.com/upload"]];
-  if (client) {
-    NSLog(@"Client Made");
-  }
-  NSURLRequest *request = [client multipartFormRequestWithMethod:@"POST" path:@"http://momento.wadec.com/upload" parameters:nil constructingBodyWithBlock: ^(id <AFMultipartFormData> formData) {
-    [formData appendPartWithFileURL:[NSURL fileURLWithPath:self.defaultFilelocation] name:@"video" error:nil];
-  }];
-  NSLog(@"URL Request created");
   
-  AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-  /*[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-    NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
-  }];*/
-
-  [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-    NSLog(@"Posted successfully");
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error)  {
-    NSLog(@"Posted failed with error %@", error);
-  }];
-
-  [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-    NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
-  }];
-
-  NSLog(@"Calling operation start");
-  [operation start];
-  NSLog(@"All done.");
-  [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (AVCaptureSession *)session {
@@ -210,14 +175,15 @@
     [self.session addInput:input];
 
     // Set up the preview
-    AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_session];
+    AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
     captureVideoPreviewLayer.frame = self.cameraPreview.bounds;
+    self.cameraPreview.hidden = NO;
     [self.cameraPreview.layer addSublayer:captureVideoPreviewLayer];
 
     // Set up out data output
     AVCaptureVideoDataOutput *outputVideo = [[AVCaptureVideoDataOutput alloc] init];
     // AVCaptureAudioDataOutput *outputAudio = [[AVCaptureAudioDataOutput alloc] init];
-    [outputVideo setVideoSettings:self.videoSettings];
+    [outputVideo setVideoSettings:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey, nil]];
 
     dispatch_queue_t queue = dispatch_queue_create("myQueue", NULL);
     [outputVideo setSampleBufferDelegate:self queue:queue];
@@ -249,6 +215,17 @@
     NSLog(@"Skipping frame");
   }
   CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  NSLog(@"Preparing for '%@' segue.", segue.identifier);
+
+  // Initialization stuff goes here
+  if ([segue.identifier isEqualToString:@"NewRecordToMetaDataSegue"]) {
+    VideoMetaDataViewController *mdvc = (VideoMetaDataViewController *)segue.destinationViewController;
+    mdvc.videoPath = self.defaultFilelocation;
+    [mdvc uploadVideo];
+  }
 }
 
 @end

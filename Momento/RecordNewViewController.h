@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "AFHTTPClient.h"
-#import "AFHTTPRequestOperation.h"
+#import "VideoMetaDataViewController.h"
 
 @interface RecordNewViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate>
 
@@ -22,6 +21,7 @@
 @property (nonatomic, strong) AVAssetWriterInput *assetWriterInput;
 @property (nonatomic, strong) AVAssetWriterInputPixelBufferAdaptor *pixelBufferAdaptor;
 @property (nonatomic) int frameNumber;
+@property (weak, nonatomic) IBOutlet UILabel *mainLabel;
 
 @property (readonly) NSString *defaultFilelocation;
 

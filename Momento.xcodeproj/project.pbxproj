@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49440091166B0E6700006CD1 /* VideoMetaDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49440090166B0E6700006CD1 /* VideoMetaDataViewController.m */; };
 		497ACA13166A960A00EFD46F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497ACA12166A960A00EFD46F /* UIKit.framework */; };
 		497ACA15166A960A00EFD46F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497ACA14166A960A00EFD46F /* Foundation.framework */; };
 		497ACA17166A960A00EFD46F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497ACA16166A960A00EFD46F /* CoreGraphics.framework */; };
@@ -40,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4944008F166B0E6700006CD1 /* VideoMetaDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoMetaDataViewController.h; sourceTree = "<group>"; };
+		49440090166B0E6700006CD1 /* VideoMetaDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoMetaDataViewController.m; sourceTree = "<group>"; };
 		497ACA0E166A960A00EFD46F /* Momento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		497ACA12166A960A00EFD46F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		497ACA14166A960A00EFD46F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -159,6 +162,8 @@
 				49A4D3A7166A9FCE00E1C1AE /* RecordNewViewController.m */,
 				49A4D3AA166AA0AB00E1C1AE /* GalleryViewController.h */,
 				49A4D3AB166AA0AB00E1C1AE /* GalleryViewController.m */,
+				4944008F166B0E6700006CD1 /* VideoMetaDataViewController.h */,
+				49440090166B0E6700006CD1 /* VideoMetaDataViewController.m */,
 			);
 			path = Momento;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				49A4D418166AC1F600E1C1AE /* AFURLConnectionOperation.m in Sources */,
 				49A4D419166AC1F600E1C1AE /* AFXMLRequestOperation.m in Sources */,
 				49A4D41A166AC1F600E1C1AE /* UIImageView+AFNetworking.m in Sources */,
+				49440091166B0E6700006CD1 /* VideoMetaDataViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
