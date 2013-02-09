@@ -10,7 +10,18 @@
 #import <AVFoundation/AVFoundation.h>
 #import "VideoMetaDataViewController.h"
 
-@interface RecordNewViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate>
+@interface RecordNewViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UIButton *recordButton;
+@property (weak, nonatomic) IBOutlet UILabel *mainLabel;
+@property (strong, nonatomic) UIImagePickerController *imagePicker;
+
+- (IBAction)captureNewVideo:(id)sender;
+- (IBAction)findExistingVideo:(id)sender;
+
+@end
+
+/*@interface RecordNewViewController : UIViewController <AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *cameraPreview;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
@@ -29,3 +40,4 @@
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection;
 @end
+ */

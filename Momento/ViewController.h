@@ -10,4 +10,10 @@
 
 @interface ViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UILabel *loggedInLabel;
+@property (nonatomic, weak) IBOutlet UIButton *loginButton;
+@property (nonatomic) BOOL isLoggedIn;
+
+- (IBAction) loginButtonPressed:(id)sender;
+
 @end

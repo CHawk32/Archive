@@ -38,6 +38,7 @@
 		49A4D41A166AC1F600E1C1AE /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A4D411166AC1F600E1C1AE /* UIImageView+AFNetworking.m */; };
 		49B34D38166ACA530067C11D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A4D41B166AC21700E1C1AE /* SystemConfiguration.framework */; };
 		49B34D39166ACA710067C11D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A4D41D166AC22B00E1C1AE /* MobileCoreServices.framework */; };
+		49D9921E16C70E7A00701166 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D9921D16C70E7A00701166 /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,8 @@
 		49A4D411166AC1F600E1C1AE /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		49A4D41B166AC21700E1C1AE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		49A4D41D166AC22B00E1C1AE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		49D9921C16C70E7A00701166 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		49D9921D16C70E7A00701166 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,8 @@
 				49A4D3AB166AA0AB00E1C1AE /* GalleryViewController.m */,
 				4944008F166B0E6700006CD1 /* VideoMetaDataViewController.h */,
 				49440090166B0E6700006CD1 /* VideoMetaDataViewController.m */,
+				49D9921C16C70E7A00701166 /* LoginViewController.h */,
+				49D9921D16C70E7A00701166 /* LoginViewController.m */,
 			);
 			path = Momento;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				49A4D419166AC1F600E1C1AE /* AFXMLRequestOperation.m in Sources */,
 				49A4D41A166AC1F600E1C1AE /* UIImageView+AFNetworking.m in Sources */,
 				49440091166B0E6700006CD1 /* VideoMetaDataViewController.m in Sources */,
+				49D9921E16C70E7A00701166 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

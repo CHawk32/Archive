@@ -16,8 +16,8 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
+// INITIALIZATION CODE
+- (void)viewDidLoad {
   [super viewDidLoad];
   [self setup];
 }
@@ -30,10 +30,49 @@
 }
 
 - (void) setup {
-  
+  self.isLoggedIn = NO;
 
+  // Attempt to login
+
+  if (self.isLoggedIn) {
+    self.loginButton.hidden = YES;
+    self.loggedInLabel.hidden = NO;
+  } else {
+    self.loginButton.hidden = NO;
+    self.loggedInLabel.hidden = YES;
+  }
 }
 
+
+
+// GETTERS AND SETTERS
+- (void) setIsLoggedIn:(BOOL)isLoggedIn {
+  if (isLoggedIn) {
+    self.loginButton.hidden = YES;
+    self.loggedInLabel.hidden = NO;
+  } else {
+    self.loginButton.hidden = NO;
+    self.loggedInLabel.hidden = YES;
+  }
+  _isLoggedIn = isLoggedIn; 
+}
+
+
+
+
+
+
+// EVENT HANDLERS
+- (IBAction) loginButtonPressed:(id)sender {
+  self.isLoggedIn = YES;
+}
+
+
+
+
+
+
+// SEGUE CODE
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   NSLog(@"Preparing for '%@' segue.", segue.identifier);
 

@@ -8,8 +8,143 @@
 
 #import "RecordNewViewController.h"
 
+
+
 @interface RecordNewViewController ()
 
+- (IBAction)finishButtonPressed:(id)sender;
+- (void) setup;
+
+@end
+
+@implementation RecordNewViewController
+
+// Initialization work ---------------------------------------------------------------------------
+- (RecordNewViewController *) init {
+  if (self = [super init]) {
+    [self setup];
+  }
+  return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+  if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    [self setup];
+  }
+  return self;
+}
+
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
+	// Do any additional setup after loading the view.
+  [self setup];
+}
+
+
+- (void) setup {
+  [self.recordButton setTitle:@"Start" forState:UIControlStateNormal];
+
+  
+}
+
+
+
+
+
+
+// Lazy Instantiation ---------------------------------------------------------------------------
+- (UIImagePickerController *) imagePicker {
+  if (_imagePicker == nil) {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO) {
+      NSLog(@"Record type movie not available...");
+      return nil;
+    }
+
+    // Need to initialize controller's settings here
+    _imagePicker = [[UIImagePickerController alloc] init];
+    _imagePicker.mediaTypes = [NSArray arrayWithObjects:(NSString *)kUTTypeMovie, nil];
+    _imagePicker.delegate = self;
+    _imagePicker.allowsEditing = YES;
+  }
+  return _imagePicker;
+}
+
+
+
+
+
+
+
+
+// Event Handlers  ---------------------------------------------------------------------------
+- (IBAction)captureNewVideo:(id)sender {
+  NSLog(@"Capture New Pressed.");
+  if (!self.imagePicker) {
+    NSLog(@"Error instantating image picker.");
+    return;
+  }
+
+  self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+  [self presentViewController:self.imagePicker animated:YES completion:nil];
+  
+}
+
+- (IBAction)findExistingVideo:(id)sender {
+  NSLog(@"Find Existing Pressed.");
+  if (!self.imagePicker) {
+    NSLog(@"Error instantating image picker.");
+    return;
+  }
+
+  self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+  [self presentViewController:self.imagePicker animated:YES completion:nil];
+}
+
+- (IBAction)finishButtonPressed:(id)sender {
+  
+}
+
+
+
+// Image Picker Delegate Functions ---------------------------------------------------------------------------
+// Tells the delegate that the user picked a still image or movie.
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+  NSLog(@"Video Selected");
+
+  NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+
+  if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
+    // TODO: Check user settings to ask if they want to save to camera roll
+    NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
+    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
+      UISaveVideoAtPathToSavedPhotosAlbum (moviePath, nil, nil, nil);
+    }
+  }
+
+
+  // Get the image picker off the screen
+  [picker dismissViewControllerAnimated:YES completion:nil];
+  picker = nil;
+}
+
+// Tells the delegate that the user cancelled the pick operation.
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+  // Get the image picker off the screen
+  [picker dismissViewControllerAnimated:YES completion:nil];
+  picker = nil;
+
+  NSLog(@"Video Selection canceled");
+}
+
+
+
+
+
+@end
+
+/*
 @property (nonatomic) bool isRecording;
 
 -(void) setup;
@@ -46,6 +181,10 @@
                             stringByAppendingPathComponent:@"Documents"];
   return [returnString stringByAppendingPathComponent:@"DefualtVideoFile.mp4"];
 }
+
+
+
+// AVAssest Writer Code:
 
 - (NSDictionary *) videoSettings {
   return [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey, nil];
@@ -177,13 +316,13 @@
     // Set up the preview
     AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
     captureVideoPreviewLayer.frame = self.cameraPreview.bounds;
-    self.cameraPreview.hidden = NO;
+    // self.cameraPreview.hidden = NO;
     [self.cameraPreview.layer addSublayer:captureVideoPreviewLayer];
 
     // Set up out data output
     AVCaptureVideoDataOutput *outputVideo = [[AVCaptureVideoDataOutput alloc] init];
     // AVCaptureAudioDataOutput *outputAudio = [[AVCaptureAudioDataOutput alloc] init];
-    [outputVideo setVideoSettings:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey, nil]];
+    outputVideo.videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA], kCVPixelBufferPixelFormatTypeKey, nil];
 
     dispatch_queue_t queue = dispatch_queue_create("myQueue", NULL);
     [outputVideo setSampleBufferDelegate:self queue:queue];
@@ -229,3 +368,4 @@
 }
 
 @end
+*/
