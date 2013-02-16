@@ -10,4 +10,6 @@
 
 @interface LoginViewController : UIViewController
 
+- (IBAction)login:(id)sender;
+
 @end

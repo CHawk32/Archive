@@ -13,7 +13,6 @@
 @interface RecordNewViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
-@property (weak, nonatomic) IBOutlet UILabel *mainLabel;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 
 - (IBAction)captureNewVideo:(id)sender;

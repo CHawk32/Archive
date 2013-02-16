@@ -45,8 +45,7 @@
 
 - (void) setup {
   [self.recordButton setTitle:@"Start" forState:UIControlStateNormal];
-
-  
+  self.title = @"Record";
 }
 
 

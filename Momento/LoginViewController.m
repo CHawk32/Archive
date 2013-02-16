@@ -1,4 +1,4 @@
-static BOOL isLoggedIn = NO;//
+//
 //  LoginViewController.m
 //  Momento
 //
@@ -7,10 +7,12 @@ static BOOL isLoggedIn = NO;//
 //
 
 #import "LoginViewController.h"
+#import "MasterNavigationController.h"
 
-static BOOL _isLoggedIn = NO;
 
 @interface LoginViewController ()
+
+@property (nonatomic) BOOL isLoggedIn;
 
 - (void) setup;
 
@@ -39,15 +41,16 @@ static BOOL _isLoggedIn = NO;
 }
 
 - (void) setup {
-  
+  // TODO: CHECK USER SAVED CACHE TO KNOW IF WE HAVE VALID CREDENTIALS
+  if (self.isLoggedIn == YES) {
+    [self.parentViewController addChildViewController:[[MasterNavigationController alloc] init]];
+    [self.parentViewController removeFromParentViewController];
+    NSLog(@"Should not have gotten here");
+  }
 }
 
-+ (BOOL) isLoggedIn {
-  return isLoggedIn;
-}
-
-- (void) logIn {
-  
+- (IBAction)login:(id)sender {
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

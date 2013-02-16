@@ -6,15 +6,16 @@
 //  Copyright (c) 2012 BAMF's. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "FeedViewController.h"
+#import "LoginViewController.h"
 
-@interface ViewController ()
+@interface FeedViewController ()
 
 - (void) setup;
 
 @end
 
-@implementation ViewController
+@implementation FeedViewController
 
 // INITIALIZATION CODE
 - (void)viewDidLoad {
@@ -22,7 +23,7 @@
   [self setup];
 }
 
-- (ViewController *) init {
+- (FeedViewController *) init {
   if (self = [super init]) {
     [self setup];
   }
@@ -30,32 +31,15 @@
 }
 
 - (void) setup {
-  self.isLoggedIn = NO;
+  self.title = @"Feed";
 
-  // Attempt to login
-
-  if (self.isLoggedIn) {
-    self.loginButton.hidden = YES;
-    self.loggedInLabel.hidden = NO;
-  } else {
-    self.loginButton.hidden = NO;
-    self.loggedInLabel.hidden = YES;
-  }
+  // if not logged in
+  [self.navigationController presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginView"] animated:YES completion:nil];
 }
 
 
 
 // GETTERS AND SETTERS
-- (void) setIsLoggedIn:(BOOL)isLoggedIn {
-  if (isLoggedIn) {
-    self.loginButton.hidden = YES;
-    self.loggedInLabel.hidden = NO;
-  } else {
-    self.loginButton.hidden = NO;
-    self.loggedInLabel.hidden = YES;
-  }
-  _isLoggedIn = isLoggedIn; 
-}
 
 
 
@@ -63,9 +47,7 @@
 
 
 // EVENT HANDLERS
-- (IBAction) loginButtonPressed:(id)sender {
-  self.isLoggedIn = YES;
-}
+
 
 
 

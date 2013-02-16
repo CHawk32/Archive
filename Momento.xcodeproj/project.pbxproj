@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		49440091166B0E6700006CD1 /* VideoMetaDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49440090166B0E6700006CD1 /* VideoMetaDataViewController.m */; };
+		49674E4516C8523D00DEB27C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49674E4416C8523D00DEB27C /* Default@2x.png */; };
+		49674E4716C8524100DEB27C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49674E4616C8524100DEB27C /* Default-568h@2x.png */; };
+		49674E4916C8536100DEB27C /* ArchiveIconPrototype.png in Resources */ = {isa = PBXBuildFile; fileRef = 49674E4816C8536100DEB27C /* ArchiveIconPrototype.png */; };
+		49674E4C16C85C2B00DEB27C /* MasterNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49674E4B16C85C2B00DEB27C /* MasterNavigationController.m */; };
 		497ACA13166A960A00EFD46F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497ACA12166A960A00EFD46F /* UIKit.framework */; };
 		497ACA15166A960A00EFD46F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497ACA14166A960A00EFD46F /* Foundation.framework */; };
 		497ACA17166A960A00EFD46F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497ACA16166A960A00EFD46F /* CoreGraphics.framework */; };
@@ -19,9 +23,10 @@
 		497ACA29166A960A00EFD46F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 497ACA28166A960A00EFD46F /* Default-568h@2x.png */; };
 		497ACA2C166A960A00EFD46F /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497ACA2A166A960A00EFD46F /* MainStoryboard_iPhone.storyboard */; };
 		497ACA2F166A960A00EFD46F /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497ACA2D166A960A00EFD46F /* MainStoryboard_iPad.storyboard */; };
-		497ACA32166A960A00EFD46F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497ACA31166A960A00EFD46F /* ViewController.m */; };
+		497ACA32166A960A00EFD46F /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497ACA31166A960A00EFD46F /* FeedViewController.m */; };
+		49A49F5E16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A49F5D16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png */; };
+		49A49F6616C8795A000DA809 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A49F6516C8795A000DA809 /* camera.png */; };
 		49A4D3A8166A9FCE00E1C1AE /* RecordNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A4D3A7166A9FCE00E1C1AE /* RecordNewViewController.m */; };
-		49A4D3AC166AA0AB00E1C1AE /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A4D3AB166AA0AB00E1C1AE /* GalleryViewController.m */; };
 		49A4D3B5166AAAE600E1C1AE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A4D3B4166AAAE600E1C1AE /* AVFoundation.framework */; };
 		49A4D3BE166ABAE000E1C1AE /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A4D3BD166ABAE000E1C1AE /* CoreMedia.framework */; };
 		49A4D3C0166ABB2000E1C1AE /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A4D3BF166ABB2000E1C1AE /* CoreVideo.framework */; };
@@ -44,6 +49,11 @@
 /* Begin PBXFileReference section */
 		4944008F166B0E6700006CD1 /* VideoMetaDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoMetaDataViewController.h; sourceTree = "<group>"; };
 		49440090166B0E6700006CD1 /* VideoMetaDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoMetaDataViewController.m; sourceTree = "<group>"; };
+		49674E4416C8523D00DEB27C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		49674E4616C8524100DEB27C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		49674E4816C8536100DEB27C /* ArchiveIconPrototype.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArchiveIconPrototype.png; sourceTree = "<group>"; };
+		49674E4A16C85C2B00DEB27C /* MasterNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterNavigationController.h; sourceTree = "<group>"; };
+		49674E4B16C85C2B00DEB27C /* MasterNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterNavigationController.m; sourceTree = "<group>"; };
 		497ACA0E166A960A00EFD46F /* Momento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Momento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		497ACA12166A960A00EFD46F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		497ACA14166A960A00EFD46F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -59,12 +69,12 @@
 		497ACA28166A960A00EFD46F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		497ACA2B166A960A00EFD46F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		497ACA2E166A960A00EFD46F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		497ACA30166A960A00EFD46F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		497ACA31166A960A00EFD46F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		497ACA30166A960A00EFD46F /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
+		497ACA31166A960A00EFD46F /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		49A49F5D16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArchiveSplashPrototypeiPhone5.png; sourceTree = "<group>"; };
+		49A49F6516C8795A000DA809 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		49A4D3A6166A9FCE00E1C1AE /* RecordNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordNewViewController.h; sourceTree = "<group>"; };
 		49A4D3A7166A9FCE00E1C1AE /* RecordNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordNewViewController.m; sourceTree = "<group>"; };
-		49A4D3AA166AA0AB00E1C1AE /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
-		49A4D3AB166AA0AB00E1C1AE /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		49A4D3B4166AAAE600E1C1AE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		49A4D3BD166ABAE000E1C1AE /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		49A4D3BF166ABB2000E1C1AE /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -119,6 +129,9 @@
 		497ACA03166A960A00EFD46F = {
 			isa = PBXGroup;
 			children = (
+				49674E4816C8536100DEB27C /* ArchiveIconPrototype.png */,
+				49674E4616C8524100DEB27C /* Default-568h@2x.png */,
+				49674E4416C8523D00DEB27C /* Default@2x.png */,
 				49A4D3E2166AC18F00E1C1AE /* AFNetworking */,
 				497ACA18166A960A00EFD46F /* Momento */,
 				497ACA11166A960A00EFD46F /* Frameworks */,
@@ -158,17 +171,17 @@
 				497ACA22166A960A00EFD46F /* AppDelegate.m */,
 				497ACA2A166A960A00EFD46F /* MainStoryboard_iPhone.storyboard */,
 				497ACA2D166A960A00EFD46F /* MainStoryboard_iPad.storyboard */,
-				497ACA30166A960A00EFD46F /* ViewController.h */,
-				497ACA31166A960A00EFD46F /* ViewController.m */,
-				497ACA19166A960A00EFD46F /* Supporting Files */,
+				497ACA30166A960A00EFD46F /* FeedViewController.h */,
+				497ACA31166A960A00EFD46F /* FeedViewController.m */,
 				49A4D3A6166A9FCE00E1C1AE /* RecordNewViewController.h */,
 				49A4D3A7166A9FCE00E1C1AE /* RecordNewViewController.m */,
-				49A4D3AA166AA0AB00E1C1AE /* GalleryViewController.h */,
-				49A4D3AB166AA0AB00E1C1AE /* GalleryViewController.m */,
 				4944008F166B0E6700006CD1 /* VideoMetaDataViewController.h */,
 				49440090166B0E6700006CD1 /* VideoMetaDataViewController.m */,
 				49D9921C16C70E7A00701166 /* LoginViewController.h */,
 				49D9921D16C70E7A00701166 /* LoginViewController.m */,
+				49674E4A16C85C2B00DEB27C /* MasterNavigationController.h */,
+				49674E4B16C85C2B00DEB27C /* MasterNavigationController.m */,
+				497ACA19166A960A00EFD46F /* Supporting Files */,
 			);
 			path = Momento;
 			sourceTree = "<group>";
@@ -176,6 +189,8 @@
 		497ACA19166A960A00EFD46F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				49A49F6516C8795A000DA809 /* camera.png */,
+				49A49F5D16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png */,
 				497ACA1A166A960A00EFD46F /* Momento-Info.plist */,
 				497ACA1B166A960A00EFD46F /* InfoPlist.strings */,
 				497ACA1E166A960A00EFD46F /* main.m */,
@@ -270,6 +285,11 @@
 				497ACA29166A960A00EFD46F /* Default-568h@2x.png in Resources */,
 				497ACA2C166A960A00EFD46F /* MainStoryboard_iPhone.storyboard in Resources */,
 				497ACA2F166A960A00EFD46F /* MainStoryboard_iPad.storyboard in Resources */,
+				49674E4516C8523D00DEB27C /* Default@2x.png in Resources */,
+				49674E4716C8524100DEB27C /* Default-568h@2x.png in Resources */,
+				49674E4916C8536100DEB27C /* ArchiveIconPrototype.png in Resources */,
+				49A49F5E16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png in Resources */,
+				49A49F6616C8795A000DA809 /* camera.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,9 +302,8 @@
 			files = (
 				497ACA1F166A960A00EFD46F /* main.m in Sources */,
 				497ACA23166A960A00EFD46F /* AppDelegate.m in Sources */,
-				497ACA32166A960A00EFD46F /* ViewController.m in Sources */,
+				497ACA32166A960A00EFD46F /* FeedViewController.m in Sources */,
 				49A4D3A8166A9FCE00E1C1AE /* RecordNewViewController.m in Sources */,
-				49A4D3AC166AA0AB00E1C1AE /* GalleryViewController.m in Sources */,
 				49A4D412166AC1F600E1C1AE /* AFHTTPClient.m in Sources */,
 				49A4D413166AC1F600E1C1AE /* AFHTTPRequestOperation.m in Sources */,
 				49A4D414166AC1F600E1C1AE /* AFImageRequestOperation.m in Sources */,
@@ -296,6 +315,7 @@
 				49A4D41A166AC1F600E1C1AE /* UIImageView+AFNetworking.m in Sources */,
 				49440091166B0E6700006CD1 /* VideoMetaDataViewController.m in Sources */,
 				49D9921E16C70E7A00701166 /* LoginViewController.m in Sources */,
+				49674E4C16C85C2B00DEB27C /* MasterNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
