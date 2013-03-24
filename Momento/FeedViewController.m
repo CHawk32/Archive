@@ -8,10 +8,12 @@
 
 #import "FeedViewController.h"
 #import "LoginViewController.h"
+#import "VideoFeedViewController.h"
 
 @interface FeedViewController ()
 
 - (void) setup;
+@property (nonatomic, strong) VideoFeedViewController *videoFeed;
 
 @end
 
@@ -30,17 +32,24 @@
   return self;
 }
 
+- (VideoFeedViewController *) videoFeed {
+  if (_videoFeed == nil) {
+    _videoFeed = [[VideoFeedViewController alloc] init];
+  }
+  return _videoFeed;
+}
+
 - (void) setup {
   self.title = @"Feed";
 
   // if not logged in
   [self.navigationController presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginView"] animated:YES completion:nil];
+  [self.view addSubview:self.videoFeed.view];
 }
 
 
 
 // GETTERS AND SETTERS
-
 
 
 
