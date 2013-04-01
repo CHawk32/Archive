@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		4943DD0B16FE63EB00EC55D0 /* BaseAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943DD0A16FE63EB00EC55D0 /* BaseAPIRequest.m */; };
 		4943DD0F16FE6ED400EC55D0 /* APIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943DD0E16FE6ED400EC55D0 /* APIResponse.m */; };
+		4943DD1216FE93DC00EC55D0 /* APIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943DD1116FE93DC00EC55D0 /* APIRequest.m */; };
 		49440091166B0E6700006CD1 /* VideoMetaDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49440090166B0E6700006CD1 /* VideoMetaDataViewController.m */; };
+		4963C078170798E7000EDA68 /* LoginOrCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4963C077170798E7000EDA68 /* LoginOrCreateViewController.m */; };
 		49674E4516C8523D00DEB27C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49674E4416C8523D00DEB27C /* Default@2x.png */; };
 		49674E4716C8524100DEB27C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49674E4616C8524100DEB27C /* Default-568h@2x.png */; };
 		49674E4916C8536100DEB27C /* ArchiveIconPrototype.png in Resources */ = {isa = PBXBuildFile; fileRef = 49674E4816C8536100DEB27C /* ArchiveIconPrototype.png */; };
@@ -46,8 +48,12 @@
 		4943DD0A16FE63EB00EC55D0 /* BaseAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAPIRequest.m; sourceTree = "<group>"; };
 		4943DD0D16FE6ED400EC55D0 /* APIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIResponse.h; sourceTree = "<group>"; };
 		4943DD0E16FE6ED400EC55D0 /* APIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIResponse.m; sourceTree = "<group>"; };
+		4943DD1016FE93DC00EC55D0 /* APIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIRequest.h; sourceTree = "<group>"; };
+		4943DD1116FE93DC00EC55D0 /* APIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIRequest.m; sourceTree = "<group>"; };
 		4944008F166B0E6700006CD1 /* VideoMetaDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoMetaDataViewController.h; sourceTree = "<group>"; };
 		49440090166B0E6700006CD1 /* VideoMetaDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoMetaDataViewController.m; sourceTree = "<group>"; };
+		4963C076170798E7000EDA68 /* LoginOrCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginOrCreateViewController.h; sourceTree = "<group>"; };
+		4963C077170798E7000EDA68 /* LoginOrCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginOrCreateViewController.m; sourceTree = "<group>"; };
 		49674E4416C8523D00DEB27C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		49674E4616C8524100DEB27C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		49674E4816C8536100DEB27C /* ArchiveIconPrototype.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArchiveIconPrototype.png; sourceTree = "<group>"; };
@@ -117,8 +123,34 @@
 				4943DD0A16FE63EB00EC55D0 /* BaseAPIRequest.m */,
 				4943DD0D16FE6ED400EC55D0 /* APIResponse.h */,
 				4943DD0E16FE6ED400EC55D0 /* APIResponse.m */,
+				4943DD1016FE93DC00EC55D0 /* APIRequest.h */,
+				4943DD1116FE93DC00EC55D0 /* APIRequest.m */,
 			);
 			name = "API Request";
+			sourceTree = "<group>";
+		};
+		4963C0741707982C000EDA68 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				49D9921C16C70E7A00701166 /* LoginViewController.h */,
+				49D9921D16C70E7A00701166 /* LoginViewController.m */,
+				4963C076170798E7000EDA68 /* LoginOrCreateViewController.h */,
+				4963C077170798E7000EDA68 /* LoginOrCreateViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		4963C07517079861000EDA68 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				497ACA30166A960A00EFD46F /* FeedViewController.h */,
+				497ACA31166A960A00EFD46F /* FeedViewController.m */,
+				49A2D86216DD6882003D6CE5 /* VideoFeedModel.h */,
+				49A2D86316DD6882003D6CE5 /* VideoFeedModel.m */,
+				49A2D86516DD6E55003D6CE5 /* VideoFeedViewController.h */,
+				49A2D86616DD6E55003D6CE5 /* VideoFeedViewController.m */,
+			);
+			name = Feed;
 			sourceTree = "<group>";
 		};
 		497ACA03166A960A00EFD46F = {
@@ -161,26 +193,20 @@
 		497ACA18166A960A00EFD46F /* Momento */ = {
 			isa = PBXGroup;
 			children = (
+				4963C07517079861000EDA68 /* Feed */,
+				4963C0741707982C000EDA68 /* Login */,
 				4943DD0C16FE6EB600EC55D0 /* API Request */,
 				497ACA21166A960A00EFD46F /* AppDelegate.h */,
 				497ACA22166A960A00EFD46F /* AppDelegate.m */,
 				497ACA2A166A960A00EFD46F /* MainStoryboard_iPhone.storyboard */,
 				497ACA2D166A960A00EFD46F /* MainStoryboard_iPad.storyboard */,
-				497ACA30166A960A00EFD46F /* FeedViewController.h */,
-				497ACA31166A960A00EFD46F /* FeedViewController.m */,
 				49A4D3A6166A9FCE00E1C1AE /* RecordNewViewController.h */,
 				49A4D3A7166A9FCE00E1C1AE /* RecordNewViewController.m */,
 				4944008F166B0E6700006CD1 /* VideoMetaDataViewController.h */,
 				49440090166B0E6700006CD1 /* VideoMetaDataViewController.m */,
-				49D9921C16C70E7A00701166 /* LoginViewController.h */,
-				49D9921D16C70E7A00701166 /* LoginViewController.m */,
 				49674E4A16C85C2B00DEB27C /* MasterNavigationController.h */,
 				49674E4B16C85C2B00DEB27C /* MasterNavigationController.m */,
 				497ACA19166A960A00EFD46F /* Supporting Files */,
-				49A2D86216DD6882003D6CE5 /* VideoFeedModel.h */,
-				49A2D86316DD6882003D6CE5 /* VideoFeedModel.m */,
-				49A2D86516DD6E55003D6CE5 /* VideoFeedViewController.h */,
-				49A2D86616DD6E55003D6CE5 /* VideoFeedViewController.m */,
 			);
 			path = Momento;
 			sourceTree = "<group>";
@@ -284,6 +310,8 @@
 				49A2D86716DD6E55003D6CE5 /* VideoFeedViewController.m in Sources */,
 				4943DD0B16FE63EB00EC55D0 /* BaseAPIRequest.m in Sources */,
 				4943DD0F16FE6ED400EC55D0 /* APIResponse.m in Sources */,
+				4943DD1216FE93DC00EC55D0 /* APIRequest.m in Sources */,
+				4963C078170798E7000EDA68 /* LoginOrCreateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

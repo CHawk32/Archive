@@ -33,6 +33,7 @@
   // assemble request
   NSLog(@"Building HTTP request with URL: %@", self.requestURL);
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.requestURL]];
+  [request setValue:@"ios-dev" forHTTPHeaderField:@"X-ApiKey"];
   
   // TODO: request authentication
 
@@ -52,11 +53,18 @@
   }
   
   // Send request
-  NSData* rawResponse = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+  NSHTTPURLResponse* urlResponse = nil;
+  NSError *requestError = nil;
+  NSData *responseBody = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
 
+  if (requestError) {
+    NSLog(@"URL Error: %@", requestError);
+  }
+
+  NSDictionary *responseBodyDictionary = [NSJSONSerialization JSONObjectWithData:responseBody options:0 error:nil];
 
   // parse response
-  APIResponse *response = [[APIResponse alloc] initWithStatus:404 content:rawResponse.bytes];
+  APIResponse *response = [[APIResponse alloc] initWithStatus:[urlResponse statusCode] content:responseBodyDictionary];
 
   // return response
   return response;

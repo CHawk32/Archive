@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 #import "MasterNavigationController.h"
+#import "APIRequest.h"
+#import "LoginOrCreateViewController.h"
 
 
 @interface LoginViewController ()
@@ -50,7 +52,17 @@
 }
 
 - (IBAction)login:(id)sender {
-  [self dismissViewControllerAnimated:YES completion:nil];
+  NSLog(@"Login pressed");
+  [self.navigationController presentViewController:[[LoginOrCreateViewController alloc] init] animated:YES completion:nil];
+  [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+- (void) loginComplete:(APIResponse*) response {
+  if ([response failed]) {
+    NSLog(@"Login failed.");
+  } else {
+    NSLog(@"Login successful!");
+  }
+};
 
 @end

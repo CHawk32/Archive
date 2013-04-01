@@ -43,7 +43,7 @@
   self.title = @"Feed";
 
   // if not logged in
-  [self.navigationController presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"LoginView"] animated:YES completion:nil];
+  [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
   [self.view addSubview:self.videoFeed.view];
 }
 

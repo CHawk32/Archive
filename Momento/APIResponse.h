@@ -10,9 +10,10 @@
 
 @interface APIResponse : NSObject
 
-@property (nonatomic, strong) NSString *content;
+@property (nonatomic, strong) NSDictionary *content;
 
 - (APIResponse *) initWithStatus:(int) status
-                         content:(NSString *) content;
+                         content:(NSDictionary *) content;
+- (BOOL) failed;
 
 @end

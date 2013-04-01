@@ -15,7 +15,7 @@
 @implementation APIResponse
 
 - (APIResponse *) initWithStatus:(int) status
-                         content:(NSString *) content {
+                         content:(NSDictionary *) content {
   if (self = [super init]) {
     self.status = status;
     self.content = content;

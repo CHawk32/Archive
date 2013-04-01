@@ -13,14 +13,15 @@
 
 - (BaseAPIRequest *) initWithPAth:(NSString *) path;
 
-// Run the request
-- (APIResponse *) doRequest;
-
 // url params
 - (void) addURLParamters:(NSDictionary *) params;
 
 // content & content type
 - (void) addContent:(NSData *) content
              ofType:(NSString *) type;
+
+
+// Run the request
+- (APIResponse *) doRequest;
 
 @end

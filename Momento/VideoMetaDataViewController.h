@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AFHTTPClient.h"
-#import "AFHTTPRequestOperation.h"
+
 
 @interface VideoMetaDataViewController : UIViewController
 

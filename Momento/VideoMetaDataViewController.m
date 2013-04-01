@@ -39,6 +39,7 @@
 }
 
 - (void) uploadVideo {
+  /*
   NSLog(@"Welcome to finish button pressed handler!");
   if ([[NSFileManager defaultManager] fileExistsAtPath:self.videoPath])
   {
@@ -58,9 +59,9 @@
   NSLog(@"URL Request created");
 
   AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-  /*[operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+  [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
    NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
-   }];*/
+   }];
 
   [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSLog(@"Posted successfully with message");
@@ -87,6 +88,7 @@
   NSLog(@"Calling operation start");
   [operation start];
   NSLog(@"All done.");
+  */
 }
 
 - (IBAction)submitButtonPressed:(id)sender {
