@@ -9,7 +9,7 @@
 #import "APIResponse.h"
 
 @interface APIResponse()
-@property (nonatomic) int status;
+
 @end
 
 @implementation APIResponse

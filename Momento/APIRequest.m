@@ -56,6 +56,7 @@
  * getFeed
  */
 + (APIResponse *) getFeed:(NSString *) userId {
+  NSLog(@"APIRequest.getFeed(%@)", userId);
   // Base http request
   BaseAPIRequest *apiRequest = [[BaseAPIRequest alloc] initWithPAth:@"/videos/feed"];
 
@@ -127,7 +128,7 @@
  */
 + (APIResponse *) comment:(NSString *) comment onVideo:(NSString *) videoId fromUser:(NSString *) userId {
   // Base http request
-  BaseAPIRequest *apiRequest = [[BaseAPIRequest alloc] initWithPAth:@"/video/commoent"];
+  BaseAPIRequest *apiRequest = [[BaseAPIRequest alloc] initWithPAth:@"/video/comment"];
 
   // Give add videoId, userId, comment as a json string
   NSDictionary *requestBodyDictionary = [NSDictionary dictionaryWithObjectsAndKeys:videoId, @"VideoId", userId, @"UserId", comment, @"Comment", nil];

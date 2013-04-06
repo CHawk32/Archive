@@ -73,10 +73,16 @@
 // url params to url 
 - (void) addURLParamters:(NSDictionary *) params {
   NSMutableString *paramsString = [[NSMutableString alloc] init];
+  int paramsCount = params.count;
 
   for (id key in params) {
+    paramsCount--;
     id value = [params valueForKey:key];
-    [paramsString appendFormat:@"%@=%@&", key, value];
+    [paramsString appendFormat:@"%@=%@", key, value];
+    
+    if (paramsCount != 0) {
+      [paramsString appendFormat:@"&"];
+    }
   }
 
   self.requestURL = [self.requestURL stringByAppendingString:paramsString];

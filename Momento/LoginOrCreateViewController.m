@@ -18,7 +18,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-      // Custom initialization
+    // Custom initialization
     [self setup];
   }
   return self;
@@ -40,7 +40,7 @@
   
   // Asynchronously call request.dorequest
   dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    [self loginComplete:[APIRequest loginWithName:username Password:password]];
+    [self loginComplete:[APIRequest loginWithName:username password:password]];
   });
 }
 
@@ -49,7 +49,7 @@
     self.ErrorMessageLabel.hidden = NO;
   } else {
     NSLog(@"Login Successful");
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self performSegueWithIdentifier: @"LoginComplete" sender: self];
   }
 }
 

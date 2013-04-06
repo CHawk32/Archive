@@ -11,9 +11,11 @@
 
 @interface LoginOrCreateViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *EmailField;
 @property (weak, nonatomic) IBOutlet UITextField *UsernameField;
 @property (weak, nonatomic) IBOutlet UITextField *PasswordField;
 @property (weak, nonatomic) IBOutlet UITextField *ConfirmPasswrodField;
+@property (weak, nonatomic) IBOutlet UILabel *EmailPasswordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ConfirmPasswordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ErrorMessageLabel;
 

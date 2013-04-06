@@ -53,8 +53,7 @@
 
 - (IBAction)login:(id)sender {
   NSLog(@"Login pressed");
-  [self.navigationController presentViewController:[[LoginOrCreateViewController alloc] init] animated:YES completion:nil];
-  [self.navigationController popToRootViewControllerAnimated:YES];
+  [self performSegueWithIdentifier: @"LoginFormSegue" sender: self];
 }
 
 - (void) loginComplete:(APIResponse*) response {

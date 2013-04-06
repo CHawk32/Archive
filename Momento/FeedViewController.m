@@ -7,22 +7,27 @@
 //
 
 #import "FeedViewController.h"
-#import "LoginViewController.h"
-#import "VideoFeedViewController.h"
+//#import "VideoFeedViewController.h"
 
 @interface FeedViewController ()
 
 - (void) setup;
-@property (nonatomic, strong) VideoFeedViewController *videoFeed;
+
+@property (nonatomic, strong) NSDictionary *videoFeed;
 
 @end
 
 @implementation FeedViewController
 
 // INITIALIZATION CODE
-- (void)viewDidLoad {
+- (void) viewDidLoad {
   [super viewDidLoad];
+
   [self setup];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
 }
 
 - (FeedViewController *) init {
@@ -32,22 +37,58 @@
   return self;
 }
 
-- (VideoFeedViewController *) videoFeed {
-  if (_videoFeed == nil) {
-    _videoFeed = [[VideoFeedViewController alloc] init];
-  }
-  return _videoFeed;
-}
+//- (VideoFeedViewController *) videoFeed {
+  //if (_videoFeed == nil) {
+  //  _videoFeed = [[VideoFeedViewController alloc] init];
+  //}
+  //return _videoFeed;
+//}
 
 - (void) setup {
-  self.title = @"Feed";
+  // if (!logged in)
+
+  self.spinner.hidesWhenStopped = YES;
+  [self getFeed];
 
   // if not logged in
-  [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
-  [self.view addSubview:self.videoFeed.view];
+  //[self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
+  //[self.view addSubview:self.videoFeed.view];
 }
 
+- (void) getFeed {
+  if (self.videoFeed == nil) {
+    // Got to ask the server for a feed
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+      [self feedReady:[APIRequest getFeed:@"1"]];
+    });
+    [self.spinner startAnimating];
+  }
+}
 
+- (void) feedReady:(APIResponse *)response {
+  if (response.failed) {
+    NSLog(@"Feed request failed with signal: %d", response.status);
+  } else {
+    //NSLog(@"Feed request succeded");
+    [self.spinner stopAnimating];
+    [self.preparingFeedLabel setHidden:YES];
+  }
+
+  self.videoFeed = response.content;
+  [self renderFeed];
+}
+
+- (void) renderFeed {
+  if (self.videoFeed == nil) {
+    // No bueno, gotta go get the feed, then will automatically come back
+    [self getFeed];
+    return;
+  }
+
+  // Draw the tableview
+  self.debugMessage.text = @"Feed Ready";
+  
+}
 
 // GETTERS AND SETTERS
 

@@ -28,7 +28,6 @@
 		497ACA2C166A960A00EFD46F /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497ACA2A166A960A00EFD46F /* MainStoryboard_iPhone.storyboard */; };
 		497ACA2F166A960A00EFD46F /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497ACA2D166A960A00EFD46F /* MainStoryboard_iPad.storyboard */; };
 		497ACA32166A960A00EFD46F /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497ACA31166A960A00EFD46F /* FeedViewController.m */; };
-		49A2D86416DD6882003D6CE5 /* VideoFeedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A2D86316DD6882003D6CE5 /* VideoFeedModel.m */; };
 		49A2D86716DD6E55003D6CE5 /* VideoFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A2D86616DD6E55003D6CE5 /* VideoFeedViewController.m */; };
 		49A49F5E16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A49F5D16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png */; };
 		49A49F6616C8795A000DA809 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A49F6516C8795A000DA809 /* camera.png */; };
@@ -76,8 +75,6 @@
 		497ACA2E166A960A00EFD46F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		497ACA30166A960A00EFD46F /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		497ACA31166A960A00EFD46F /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
-		49A2D86216DD6882003D6CE5 /* VideoFeedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoFeedModel.h; sourceTree = "<group>"; };
-		49A2D86316DD6882003D6CE5 /* VideoFeedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoFeedModel.m; sourceTree = "<group>"; };
 		49A2D86516DD6E55003D6CE5 /* VideoFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoFeedViewController.h; sourceTree = "<group>"; };
 		49A2D86616DD6E55003D6CE5 /* VideoFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoFeedViewController.m; sourceTree = "<group>"; };
 		49A49F5D16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArchiveSplashPrototypeiPhone5.png; sourceTree = "<group>"; };
@@ -145,8 +142,6 @@
 			children = (
 				497ACA30166A960A00EFD46F /* FeedViewController.h */,
 				497ACA31166A960A00EFD46F /* FeedViewController.m */,
-				49A2D86216DD6882003D6CE5 /* VideoFeedModel.h */,
-				49A2D86316DD6882003D6CE5 /* VideoFeedModel.m */,
 				49A2D86516DD6E55003D6CE5 /* VideoFeedViewController.h */,
 				49A2D86616DD6E55003D6CE5 /* VideoFeedViewController.m */,
 			);
@@ -306,7 +301,6 @@
 				49440091166B0E6700006CD1 /* VideoMetaDataViewController.m in Sources */,
 				49D9921E16C70E7A00701166 /* LoginViewController.m in Sources */,
 				49674E4C16C85C2B00DEB27C /* MasterNavigationController.m in Sources */,
-				49A2D86416DD6882003D6CE5 /* VideoFeedModel.m in Sources */,
 				49A2D86716DD6E55003D6CE5 /* VideoFeedViewController.m in Sources */,
 				4943DD0B16FE63EB00EC55D0 /* BaseAPIRequest.m in Sources */,
 				4943DD0F16FE6ED400EC55D0 /* APIResponse.m in Sources */,

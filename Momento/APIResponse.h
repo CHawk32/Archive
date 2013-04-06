@@ -11,6 +11,7 @@
 @interface APIResponse : NSObject
 
 @property (nonatomic, strong) NSDictionary *content;
+@property (nonatomic) int status;
 
 - (APIResponse *) initWithStatus:(int) status
                          content:(NSDictionary *) content;

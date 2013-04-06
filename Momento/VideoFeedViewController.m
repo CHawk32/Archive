@@ -7,10 +7,10 @@
 //
 
 #import "VideoFeedViewController.h"
-#import "VideoFeedModel.h"
+//#import "VideoFeedModel.h"
 
 @interface VideoFeedViewController ()
-
+/*
 @property (nonatomic, strong) VideoFeedModel* feedModel;
 
 @end
@@ -119,7 +119,7 @@
 */
 
 #pragma mark - Table view delegate
-
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
@@ -129,6 +129,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-}
+//}
 
 @end
