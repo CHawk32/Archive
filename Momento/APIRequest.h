@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "APIResponse.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface APIRequest : NSObject
 
@@ -34,5 +35,10 @@
 + (APIResponse *) videoView:(NSString *) videoId;
 
 // Upload Video
++ (APIResponse *) uploadVideo:(NSString *) videoPath fromUser:(NSString *) userID;
+
++ (APIResponse *) uploadVideoMetadata:(NSDictionary *) metadata;
+
+
 
 @end

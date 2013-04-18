@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APIRequest.h"
 
 
 @interface VideoMetaDataViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
+@property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionField;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (weak, nonatomic) IBOutlet UISwitch *publicSwitch;
+
 @property (nonatomic, strong) NSString *videoPath;
 
 - (void) uploadVideo;

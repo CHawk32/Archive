@@ -10,11 +10,12 @@
 
 @interface APIResponse : NSObject
 
-@property (nonatomic, strong) NSDictionary *content;
+@property (nonatomic, strong) NSData *content;
 @property (nonatomic) int status;
 
 - (APIResponse *) initWithStatus:(int) status
-                         content:(NSDictionary *) content;
+                         content:(NSData *) content;
 - (BOOL) failed;
+- (id) JSONObjFromData;
 
 @end

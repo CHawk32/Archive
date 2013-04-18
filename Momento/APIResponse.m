@@ -15,7 +15,7 @@
 @implementation APIResponse
 
 - (APIResponse *) initWithStatus:(int) status
-                         content:(NSDictionary *) content {
+                         content:(NSData *) content {
   if (self = [super init]) {
     self.status = status;
     self.content = content;
@@ -28,6 +28,10 @@
     return NO;
   }
   return YES;
+}
+
+- (id) JSONObjFromData {
+  return [NSJSONSerialization JSONObjectWithData:self.content options:NSJSONReadingMutableContainers error:nil];
 }
 
 @end

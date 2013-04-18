@@ -172,6 +172,73 @@
   return [apiRequest doRequest];
 }
 
+/*
+ * uploadVideo
+ */
++ (APIResponse *) uploadVideo:(NSString *) videoPath fromUser:(NSString *) userID {
+  // Step 1) Create the video and get its videoID
+  BaseAPIRequest *apiRequestCreateVideo = [[BaseAPIRequest alloc] initWithPAth:@"/createvideo"];
+
+  // userID as URL parameter
+  NSDictionary *content = [NSDictionary dictionaryWithObjectsAndKeys:userID, @"UserId", nil];
+  [apiRequestCreateVideo addContent:[NSJSONSerialization dataWithJSONObject:content
+                                                                    options:0
+                                                                      error:nil] ofType:@"application/JSON"];
+
+  // Get the video ID from the response
+  NSLog(@"Creating Video");
+  APIResponse *createResponse = [apiRequestCreateVideo doRequest];
+  NSString *videoID = [[createResponse JSONObjFromData] objectForKey:@"VideoId"];
+  NSLog(@"videoID: %@", videoID);
+
+  //if (videoID)
+
+  
+  // Step 2) upload the video's image
+  BaseAPIRequest *apiRequestUploadVideoImage = [[BaseAPIRequest alloc] initWithPAth:@"/uploadvideoimage"];
+
+  // Add the video id as a url param
+  NSDictionary *videoUrlParameters = [NSDictionary dictionaryWithObjectsAndKeys:videoID, @"VideoID", nil];
+  [apiRequestUploadVideoImage addURLParamters:videoUrlParameters];
+
+  // Add the actual image
+  NSURL *videoURL = [NSURL fileURLWithPath:videoPath];
+  MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
+  UIImage *image = [player thumbnailImageAtTime:1.0
+                                     timeOption:MPMovieTimeOptionNearestKeyFrame];
+
+  [apiRequestUploadVideoImage addContent:UIImageJPEGRepresentation(image, 0.7) ofType:@"image/jpg"];
+
+  NSLog(@"Uploading Image");
+  [apiRequestUploadVideoImage doRequest];
+  
+  // Step 3) upload the video file
+  BaseAPIRequest *apiRequestUploadVideo = [[BaseAPIRequest alloc] initWithPAth:@"/uploadvideofile"];
+  
+  [apiRequestUploadVideo addURLParamters:videoUrlParameters];
+  [apiRequestUploadVideo addContent:[NSData dataWithContentsOfURL:videoURL] ofType:@"video/mp4"];
+
+  NSLog(@"Uploading Video");
+  return [apiRequestUploadVideo doRequest];
+}
+
+/*
+ * uploadMetadata
+ */
++ (APIResponse *) uploadVideoMetadata:(NSDictionary *) metadata {
+
+  BaseAPIRequest *apiRequest = [[BaseAPIRequest alloc] initWithPAth:@"/uploadvideometadata"];
+
+  // Give add username and password as a json string
+  NSData *JSONdata = [NSJSONSerialization dataWithJSONObject:metadata
+                                                     options:0
+                                                       error:nil];
+
+  [apiRequest addContent:JSONdata ofType:@"application/JSON"];
+
+  return [apiRequest doRequest];
+}
+
 
 
 @end

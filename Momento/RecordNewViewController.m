@@ -44,7 +44,7 @@
 
 
 - (void) setup {
-  [self.recordButton setTitle:@"Start" forState:UIControlStateNormal];
+  //[self.recordButton setTitle:@"Start" forState:UIControlStateNormal];
   self.title = @"Record";
 }
 
@@ -87,7 +87,6 @@
 
   self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
   [self presentViewController:self.imagePicker animated:YES completion:nil];
-  
 }
 
 - (IBAction)findExistingVideo:(id)sender {
@@ -102,30 +101,41 @@
 }
 
 - (IBAction)finishButtonPressed:(id)sender {
-  
+  if (self.moviePath == nil) {
+    NSLog(@"Error, try to upload without path");
+    return;
+  }
+
+  [self performSegueWithIdentifier:@"UploadVideoSegue" sender:self];
 }
 
 
 
 // Image Picker Delegate Functions ---------------------------------------------------------------------------
 // Tells the delegate that the user picked a still image or movie.
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
   NSLog(@"Video Selected");
 
   NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
 
-  if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
-    // TODO: Check user settings to ask if they want to save to camera roll
-    NSString *moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
-    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (moviePath)) {
-      UISaveVideoAtPathToSavedPhotosAlbum (moviePath, nil, nil, nil);
-    }
-  }
-
-
   // Get the image picker off the screen
   [picker dismissViewControllerAnimated:YES completion:nil];
   picker = nil;
+
+  if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
+    // TODO: Check user settings to ask if they want to save to camera roll
+
+    self.moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
+    self.videoPathLabel.text = self.moviePath;
+    
+    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum (self.moviePath)) {
+      // UISaveVideoAtPathToSavedPhotosAlbum (self.moviePath, nil, nil, nil);
+    }
+  } else {
+    NSLog(@"Media Type does not match Movie");
+  }
+
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // Tells the delegate that the user cancelled the pick operation.
@@ -134,7 +144,16 @@
   [picker dismissViewControllerAnimated:YES completion:nil];
   picker = nil;
 
+  self.moviePath = nil;
+  self.videoPathLabel.text = @"Video Picker Cancelled";
+
   NSLog(@"Video Selection canceled");
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([segue.identifier isEqualToString:@"UploadVideoSegue"]) {
+    [segue.destinationViewController setVideoPath:self.moviePath];
+  }
 }
 
 

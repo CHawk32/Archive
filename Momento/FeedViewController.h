@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "APIRequest.h"
 #import "APIResponse.h"
+#import "VideoCell.h"
 
-@interface FeedViewController : UIViewController <UINavigationControllerDelegate>
+@interface FeedViewController : UITableViewController <UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *debugMessage;
 @property (weak, nonatomic) IBOutlet UILabel *preparingFeedLabel;

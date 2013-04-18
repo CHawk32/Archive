@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
+@property (nonatomic, strong) NSString *moviePath;
+@property (weak, nonatomic) IBOutlet UILabel *videoPathLabel;
 
 - (IBAction)captureNewVideo:(id)sender;
 - (IBAction)findExistingVideo:(id)sender;

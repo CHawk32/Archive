@@ -28,7 +28,9 @@
 		497ACA2C166A960A00EFD46F /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497ACA2A166A960A00EFD46F /* MainStoryboard_iPhone.storyboard */; };
 		497ACA2F166A960A00EFD46F /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 497ACA2D166A960A00EFD46F /* MainStoryboard_iPad.storyboard */; };
 		497ACA32166A960A00EFD46F /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497ACA31166A960A00EFD46F /* FeedViewController.m */; };
-		49A2D86716DD6E55003D6CE5 /* VideoFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A2D86616DD6E55003D6CE5 /* VideoFeedViewController.m */; };
+		499865341714A1FE00D814B5 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 499865331714A1FE00D814B5 /* VideoCell.m */; };
+		499865361714AB8000D814B5 /* JimmyLee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 499865351714AB8000D814B5 /* JimmyLee.jpg */; };
+		499865381714B97300D814B5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499865371714B97300D814B5 /* MediaPlayer.framework */; };
 		49A49F5E16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A49F5D16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png */; };
 		49A49F6616C8795A000DA809 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A49F6516C8795A000DA809 /* camera.png */; };
 		49A4D3A8166A9FCE00E1C1AE /* RecordNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A4D3A7166A9FCE00E1C1AE /* RecordNewViewController.m */; };
@@ -75,8 +77,10 @@
 		497ACA2E166A960A00EFD46F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		497ACA30166A960A00EFD46F /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		497ACA31166A960A00EFD46F /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
-		49A2D86516DD6E55003D6CE5 /* VideoFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoFeedViewController.h; sourceTree = "<group>"; };
-		49A2D86616DD6E55003D6CE5 /* VideoFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoFeedViewController.m; sourceTree = "<group>"; };
+		499865321714A1FE00D814B5 /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
+		499865331714A1FE00D814B5 /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
+		499865351714AB8000D814B5 /* JimmyLee.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JimmyLee.jpg; sourceTree = "<group>"; };
+		499865371714B97300D814B5 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		49A49F5D16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArchiveSplashPrototypeiPhone5.png; sourceTree = "<group>"; };
 		49A49F6516C8795A000DA809 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		49A4D3A6166A9FCE00E1C1AE /* RecordNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordNewViewController.h; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				499865381714B97300D814B5 /* MediaPlayer.framework in Frameworks */,
 				49B34D39166ACA710067C11D /* MobileCoreServices.framework in Frameworks */,
 				49B34D38166ACA530067C11D /* SystemConfiguration.framework in Frameworks */,
 				49A4D3E1166ABEA000E1C1AE /* CFNetwork.framework in Frameworks */,
@@ -142,8 +147,8 @@
 			children = (
 				497ACA30166A960A00EFD46F /* FeedViewController.h */,
 				497ACA31166A960A00EFD46F /* FeedViewController.m */,
-				49A2D86516DD6E55003D6CE5 /* VideoFeedViewController.h */,
-				49A2D86616DD6E55003D6CE5 /* VideoFeedViewController.m */,
+				499865321714A1FE00D814B5 /* VideoCell.h */,
+				499865331714A1FE00D814B5 /* VideoCell.m */,
 			);
 			name = Feed;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 		497ACA03166A960A00EFD46F = {
 			isa = PBXGroup;
 			children = (
+				499865371714B97300D814B5 /* MediaPlayer.framework */,
 				49674E4816C8536100DEB27C /* ArchiveIconPrototype.png */,
 				49674E4616C8524100DEB27C /* Default-568h@2x.png */,
 				49674E4416C8523D00DEB27C /* Default@2x.png */,
@@ -188,6 +194,7 @@
 		497ACA18166A960A00EFD46F /* Momento */ = {
 			isa = PBXGroup;
 			children = (
+				49D23492171E0F7D001BDF16 /* Create And Upload */,
 				4963C07517079861000EDA68 /* Feed */,
 				4963C0741707982C000EDA68 /* Login */,
 				4943DD0C16FE6EB600EC55D0 /* API Request */,
@@ -195,10 +202,6 @@
 				497ACA22166A960A00EFD46F /* AppDelegate.m */,
 				497ACA2A166A960A00EFD46F /* MainStoryboard_iPhone.storyboard */,
 				497ACA2D166A960A00EFD46F /* MainStoryboard_iPad.storyboard */,
-				49A4D3A6166A9FCE00E1C1AE /* RecordNewViewController.h */,
-				49A4D3A7166A9FCE00E1C1AE /* RecordNewViewController.m */,
-				4944008F166B0E6700006CD1 /* VideoMetaDataViewController.h */,
-				49440090166B0E6700006CD1 /* VideoMetaDataViewController.m */,
 				49674E4A16C85C2B00DEB27C /* MasterNavigationController.h */,
 				49674E4B16C85C2B00DEB27C /* MasterNavigationController.m */,
 				497ACA19166A960A00EFD46F /* Supporting Files */,
@@ -209,6 +212,7 @@
 		497ACA19166A960A00EFD46F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				499865351714AB8000D814B5 /* JimmyLee.jpg */,
 				49A49F6516C8795A000DA809 /* camera.png */,
 				49A49F5D16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png */,
 				497ACA1A166A960A00EFD46F /* Momento-Info.plist */,
@@ -220,6 +224,17 @@
 				497ACA28166A960A00EFD46F /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49D23492171E0F7D001BDF16 /* Create And Upload */ = {
+			isa = PBXGroup;
+			children = (
+				49A4D3A6166A9FCE00E1C1AE /* RecordNewViewController.h */,
+				49A4D3A7166A9FCE00E1C1AE /* RecordNewViewController.m */,
+				4944008F166B0E6700006CD1 /* VideoMetaDataViewController.h */,
+				49440090166B0E6700006CD1 /* VideoMetaDataViewController.m */,
+			);
+			name = "Create And Upload";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +299,7 @@
 				49674E4916C8536100DEB27C /* ArchiveIconPrototype.png in Resources */,
 				49A49F5E16C86031000DA809 /* ArchiveSplashPrototypeiPhone5.png in Resources */,
 				49A49F6616C8795A000DA809 /* camera.png in Resources */,
+				499865361714AB8000D814B5 /* JimmyLee.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,11 +317,11 @@
 				49440091166B0E6700006CD1 /* VideoMetaDataViewController.m in Sources */,
 				49D9921E16C70E7A00701166 /* LoginViewController.m in Sources */,
 				49674E4C16C85C2B00DEB27C /* MasterNavigationController.m in Sources */,
-				49A2D86716DD6E55003D6CE5 /* VideoFeedViewController.m in Sources */,
 				4943DD0B16FE63EB00EC55D0 /* BaseAPIRequest.m in Sources */,
 				4943DD0F16FE6ED400EC55D0 /* APIResponse.m in Sources */,
 				4943DD1216FE93DC00EC55D0 /* APIRequest.m in Sources */,
 				4963C078170798E7000EDA68 /* LoginOrCreateViewController.m in Sources */,
+				499865341714A1FE00D814B5 /* VideoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

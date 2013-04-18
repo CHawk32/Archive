@@ -12,6 +12,9 @@
 
 @property (nonatomic) int totalSize;
 @property (nonatomic) int sentSoFar;
+@property (nonatomic, strong) NSString *videoID;
+
+- (void) setup;
 
 @end
 
@@ -21,15 +24,24 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+      [self setup];
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  [self setup];
+}
+
+- (void) setup {
+  NSLog(@"Uploading video with at path: %@", self.videoPath);
+
+  self.submitButton.hidden = YES;
+
+  // Get video uploading in the background
+  [self.progressLabel setText:@"Uploading"];
+  [self uploadVideo];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,61 +50,53 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void) uploadVideo {
-  /*
-  NSLog(@"Welcome to finish button pressed handler!");
-  if ([[NSFileManager defaultManager] fileExistsAtPath:self.videoPath])
-  {
-    NSLog(@"file exists");
-  }
-  //NSData *data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:self.defaultFilelocation]];
-  NSData *data = [NSData dataWithContentsOfFile:self.videoPath];
-  NSLog(@"Data length %d", data.length);
-  NSLog(@"Have data, will travel");
-  AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL fileURLWithPath:@"http://momento.wadec.com/upload"]];
-  if (client) {
-    NSLog(@"Client Made");
-  }
-  NSURLRequest *request = [client multipartFormRequestWithMethod:@"POST" path:@"http://momento.wadec.com/upload" parameters:nil constructingBodyWithBlock: ^(id <AFMultipartFormData> formData) {
-    [formData appendPartWithFileURL:[NSURL fileURLWithPath:self.videoPath] name:@"video" error:nil];
-  }];
-  NSLog(@"URL Request created");
+  dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    [self uploadComplete:[APIRequest uploadVideo:self.videoPath fromUser:@"4"]];
+  });
+}
 
-  AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-  [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-   NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
-   }];
-
-  [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-    NSLog(@"Posted successfully with message");
-    //[self.navigationController popToRootViewControllerAnimated:YES];
-    //[self.navigationController popViewControllerAnimated:YES];
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error)  {
-    NSLog(@"Posted failed with error %@", error);
-    //[self.navigationController popToRootViewControllerAnimated:YES];
-    //[self.navigationController popViewControllerAnimated:YES];
-  }];
-
-  self.totalSize = 0;
-  self.sentSoFar = 0;
-  self.progressLabel.hidden = NO;
-
-  [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-    self.totalSize = totalBytesExpectedToWrite;
-    self.sentSoFar = totalBytesWritten;
-
-    [self.progressLabel setText:[NSString stringWithFormat:@"%d of %d bytes sent", self.sentSoFar, self.totalSize]];
-    //NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
-  }];
-
-  NSLog(@"Calling operation start");
-  [operation start];
-  NSLog(@"All done.");
-  */
+- (void) uploadComplete:(APIResponse *) response {
+  NSLog(@"Video Upload Complete with status: %d", response.status);
+  self.videoID = [(NSDictionary *)response.content objectForKey:@"videoID"];
+  self.submitButton.hidden = NO;
+  [self.progressLabel setText:@"Complete"];
 }
 
 - (IBAction)submitButtonPressed:(id)sender {
+  if (self.videoID == nil) {
+    NSLog(@"Wait till its uploaded");
+    return;
+  }
+
   // DO SOMETHING WITH META DATA
+  /* Make JSON Object like:
+  {
+     int VideoId;
+     string Title;
+     string Description;
+     string Location;
+     string[] Tags;
+     DateTime Taken;
+     bool IsPublic
+  }
+  */
+  NSString *isPublic = [self.publicSwitch isOn] ? @"true" : @"false";
+
+  NSDictionary *metadata = [NSDictionary dictionaryWithObjectsAndKeys:
+                              self.videoID, @"VideoID",
+                              self.titleField.text, @"Title",
+                              self.descriptionField.text, @"Description",
+                              @"", @"Location",
+                              @"", @"DateTime",
+                              isPublic, @"IsPublic",
+                            nil];
+  
+
+  dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    [APIRequest uploadVideoMetadata:metadata];
+  });
 
   [self.navigationController popToRootViewControllerAnimated:YES];
 }

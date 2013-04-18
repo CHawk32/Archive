@@ -61,10 +61,10 @@
     NSLog(@"URL Error: %@", requestError);
   }
 
-  NSDictionary *responseBodyDictionary = [NSJSONSerialization JSONObjectWithData:responseBody options:0 error:nil];
+  //NSDictionary *responseBodyDictionary = [NSJSONSerialization JSONObjectWithData:responseBody options:0 error:nil];
 
   // parse response
-  APIResponse *response = [[APIResponse alloc] initWithStatus:[urlResponse statusCode] content:responseBodyDictionary];
+  APIResponse *response = [[APIResponse alloc] initWithStatus:[urlResponse statusCode] content:responseBody];
 
   // return response
   return response;
