@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSData *content;
 @property (nonatomic) int status;
+@property (nonatomic, strong) NSString *debug;
 
 - (APIResponse *) initWithStatus:(int) status
                          content:(NSData *) content;

@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *debugMessage;
 @property (weak, nonatomic) IBOutlet UILabel *preparingFeedLabel;
+@property (nonatomic, strong) MPMoviePlayerController *moviePlayerController;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 - (void) feedReady:(APIResponse *)response;

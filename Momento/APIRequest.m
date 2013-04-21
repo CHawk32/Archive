@@ -219,7 +219,12 @@
   [apiRequestUploadVideo addContent:[NSData dataWithContentsOfURL:videoURL] ofType:@"video/mp4"];
 
   NSLog(@"Uploading Video");
-  return [apiRequestUploadVideo doRequest];
+  
+  APIResponse *uploadResonse = [apiRequestUploadVideo doRequest];
+
+  uploadResonse.debug = videoID;
+
+  return uploadResonse;
 }
 
 /*

@@ -13,9 +13,9 @@
 
 - (void) setup;
 
-@property (nonatomic, strong) MPMoviePlayerController *moviePlayerController;
-
 @property (nonatomic, strong) NSArray *videoFeed;
+@property (nonatomic, strong) NSArray *videoImageCache;
+@property (nonatomic, strong) NSArray *usrImageCache;
 
 @end
 
@@ -46,7 +46,7 @@
 
   self.spinner.hidesWhenStopped = YES;
   self.videoFeed = nil;
-  [self getFeed];
+  [self renderFeed];
 
   // if not logged in
   //[self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
@@ -81,7 +81,17 @@
   //} else {
     self.videoFeed = [response JSONObjFromData];//JSONObject;
   //}
-  
+
+  NSMutableArray *newImgArray = [NSMutableArray arrayWithArray:@[]];
+  NSMutableArray *newUsrArray = [NSMutableArray arrayWithArray:@[]];
+  for (int i = 0; i < self.videoFeed.count; i++) {
+    NSDictionary *video = [self.videoFeed objectAtIndex:i];
+    NSDictionary *user = [video objectForKey:@"User"];
+    [newImgArray addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[video objectForKey:@"MediumImageUrl"]]]]];
+    [newUsrArray addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[user objectForKey:@"Avatar"]]]]];
+  }
+  self.videoImageCache = [NSArray arrayWithArray:newImgArray];
+  self.usrImageCache = [NSArray arrayWithArray:newUsrArray];
   [self renderFeed];
 }
 
@@ -105,6 +115,10 @@
 
 
 // EVENT HANDLERS
+- (IBAction)refreshButtonPressed:(id)sender {
+  self.videoFeed = nil;
+  [self renderFeed];
+}
 
 
 
@@ -128,6 +142,10 @@
     cell = [[VideoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"VideoCell"];
   }
 
+  if (self.videoFeed == nil) {
+    return cell;
+  }
+
   NSInteger rowNum = indexPath.row;
   NSDictionary *video = [self.videoFeed objectAtIndex:rowNum];
   NSDictionary *user = [video objectForKey:@"User"];
@@ -135,8 +153,8 @@
   cell.VideoNameLabel.text = [video objectForKey:@"Title"];//@"Default";
   cell.UserNameLabel.text = [user objectForKey:@"Username"];
 
-  cell.VideoThumbnail.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[video objectForKey:@"MediumImageUrl"]]]];
-  cell.UserImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[user objectForKey:@"Avatar"]]]];
+  cell.VideoThumbnail.image = [self.videoImageCache objectAtIndex:rowNum];//[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[video objectForKey:@"MediumImageUrl"]]]];
+  cell.UserImage.image = [self.usrImageCache objectAtIndex:rowNum];//[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[user objectForKey:@"Avatar"]]]];
   cell.videoURL = [video objectForKey:@"VideoUrl"];
   cell.DescriptionText.text = [video objectForKey:@"Description"];
 
@@ -160,10 +178,17 @@
   //moviePlayerController.movieSourceType = MPMovieSourceTypeStreaming;
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.moviePlayerController];
-  
+
+  //self.moviePlayerController.view.frame = CGRectMake( 0, 0, 320, 500);
+
   // Pass the selected object to the new view controller.
-  [self.moviePlayerController setFullscreen:YES animated:YES];
   [self.view addSubview:self.moviePlayerController.view];
+  [self.moviePlayerController setFullscreen:YES animated:YES];
+  //[self.moviePlayerController.view setFrame:cell..bounds];
+  //if (![self.moviePlayerController isPreparedToPlay]) {
+  //  NSLog(@"Not ready to play");
+  //}
+  
   //[self.moviePlayerController play];
 }
 
@@ -173,6 +198,7 @@
 
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:MPMoviePlayerPlaybackDidFinishNotification object:player];
+  [player setFullscreen:NO animated:YES];
   [player.view removeFromSuperview];
   self.moviePlayerController = nil;
 }
@@ -183,7 +209,7 @@
 
   // Initialization stuff goes here
   if ([segue.identifier isEqualToString:@"NewRecordingSegue"]) {
-    [self.navigationController pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"RecordNewViewController"] animated:YES];
+    //[self.navigationController pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"RecordNewViewController"] animated:YES];
   } else {
     NSLog(@"Error, attempting to use an undefined segue");
   }

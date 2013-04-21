@@ -106,7 +106,7 @@
     return;
   }
 
-  [self performSegueWithIdentifier:@"UploadVideoSegue" sender:self];
+  //[self performSegueWithIdentifier:@"UploadVideoSegue" sender:self];
 }
 
 

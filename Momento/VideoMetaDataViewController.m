@@ -37,19 +37,12 @@
 - (void) setup {
   NSLog(@"Uploading video with at path: %@", self.videoPath);
 
-  self.submitButton.hidden = YES;
+  //self.submitButton.hidden = YES;
 
   // Get video uploading in the background
   [self.progressLabel setText:@"Uploading"];
   [self uploadVideo];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 - (void) uploadVideo {
   dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -59,16 +52,18 @@
 
 - (void) uploadComplete:(APIResponse *) response {
   NSLog(@"Video Upload Complete with status: %d", response.status);
-  self.videoID = [(NSDictionary *)response.content objectForKey:@"videoID"];
+  self.videoID = response.debug;
   self.submitButton.hidden = NO;
   [self.progressLabel setText:@"Complete"];
 }
 
 - (IBAction)submitButtonPressed:(id)sender {
   if (self.videoID == nil) {
-    NSLog(@"Wait till its uploaded");
+    self.progressLabel.text = @"Wait till its uploaded";
     return;
   }
+
+  self.progressLabel.text = @"Uploading";
 
   // DO SOMETHING WITH META DATA
   /* Make JSON Object like:
@@ -85,20 +80,23 @@
   NSString *isPublic = [self.publicSwitch isOn] ? @"true" : @"false";
 
   NSDictionary *metadata = [NSDictionary dictionaryWithObjectsAndKeys:
-                              self.videoID, @"VideoID",
+                              self.videoID, @"VideoId",
                               self.titleField.text, @"Title",
                               self.descriptionField.text, @"Description",
                               @"", @"Location",
-                              @"", @"DateTime",
+                              @"", @"Taken",
+                              @[], @"Tags",
                               isPublic, @"IsPublic",
                             nil];
   
 
   dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    [APIRequest uploadVideoMetadata:metadata];
+    NSLog(@"Metadata upload complete with staus: %d", [APIRequest uploadVideoMetadata:metadata].status);
+    self.progressLabel.text = @"Upload Successful";
   });
 
-  [self.navigationController popToRootViewControllerAnimated:YES];
+  
+  //[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)backgroundTouched:(id)sender {
